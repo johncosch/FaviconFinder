@@ -1,0 +1,5 @@
+require 'favicon_finder/api'
+require 'favicon_finder/page_parser'
+require 'favicon_finder/url_cleaner'
+require 'favicon_finder/favicon'
+require 'favicon_finder/database_seeder'

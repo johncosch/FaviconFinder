@@ -1,0 +1,2 @@
+create database favicon_finder_development;
+create database favicon_finder_test;
