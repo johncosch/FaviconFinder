@@ -4,7 +4,7 @@ require "concurrent"
 module FaviconFinder
   class DatabaseSeeder
     POOL_SIZE = 50
-    COUNT_LIMIT = 1000
+    COUNT_LIMIT = 200000
 
     def seed
       @queue = Queue.new
