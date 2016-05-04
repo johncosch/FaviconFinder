@@ -1,12 +1,14 @@
 require "nokogiri"
 require "open-uri"
 require 'open_uri_redirections'
+require "httparty"
 
 module FaviconFinder
   class PageParser
 
     #
-    # Invalid domains should be caught on instantiation
+    # Note: Invalid domains should be caught on instantiation
+    # Note: perhaps I should check the default location prior to parsing
     #
 
     def initialize(domain)
@@ -15,6 +17,19 @@ module FaviconFinder
     end
 
     def find_favicon_url
+      node = parse_page_for_link
+      if node && node['href']
+        UrlCleaner.clean(node['href'], @domain)
+      elsif verify_image_location(default_location)
+        default_location
+      else
+        nil
+      end
+    end
+
+    private
+
+    def parse_page_for_link
       elements = @doc.xpath "//head/link[translate(
       @rel,
       'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -23,13 +38,20 @@ module FaviconFinder
       @rel,
       'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
       'abcdefghijklmnopqrstuvwxyz'
-      ) = 'shortcut icon']" # old xpath -> "//head/link[@rel = 'icon' or @rel = 'shortcut icon']"
-      node = elements.first
-      if node && node['href']
-        UrlCleaner.clean(node['href'], @domain)
-      else
-        puts "no node with icon or shortcut icon was found #{@domain}"
-        nil
+      ) = 'shortcut icon']"
+      elements.first
+    end
+
+    def default_location
+      File.join(@domain, "favicon.ico")
+    end
+
+    def verify_image_location(image_location)
+      begin
+        response = HTTParty.get(image_location, follow_redirects: true)
+        response.code == 200 && response.headers['Content-Type'].start_with?('image')
+      rescue Exception => e
+        puts "EXCEPTION: #{e} for url : #{image_location}"
       end
     end
 

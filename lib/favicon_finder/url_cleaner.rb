@@ -16,6 +16,8 @@ module FaviconFinder
       full_protocol(url, domain)
     end
 
+    private
+
     def self.full_protocol(url, domain)
       has_relative_protocol?(url) ? add_relative_protocol(url, domain) : url
     end

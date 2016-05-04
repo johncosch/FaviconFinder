@@ -42,9 +42,6 @@ describe FaviconFinder::PageParser do
       fav_url = parser.find_favicon_url
       expect(strip_query(fav_url)).to eq('http://cdn2.hubspot.net/hub/53/file-8149778-png/fav.png')
     end
-
-    it "should return the correct url with icon rel value" do
-      #TODO
-    end
   end
+
 end

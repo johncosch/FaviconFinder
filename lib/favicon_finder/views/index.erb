@@ -1,37 +1,36 @@
 <!DOCTYPE html>
-<head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-</head>
-<body>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  </head>
+  <body>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-offset-2 col-md-8" style="text-align:center;">
-          <h2>Favicon Finder</h2>
-          <form method="post">
-            <div class="form-group">
-              <input type="text" class="form-control" id="domain_input" name="domain" placeholder="http://crayon.co">
-            </div>
-            <button type="submit" class="btn btn-success">Find Favicon</button>
-          </form>
-          <div style="margin-top:20px;">
-            <% if domain %>
-              <h4> <%= domain %> </h4>
-              <% if fav_url %>
-                <img src="<%= fav_url %>" />
-              <% else %>
-                <div class="alert alert-danger" role="alert">
-                  <strong>Oh No!</strong> we couldn't find a favicon url for <strong><%= domain %></strong> 
-                </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8" style="text-align:center;">
+            <h2>Favicon Finder</h2>
+            <form method="post">
+              <div class="form-group">
+                <input type="text" class="form-control" id="domain_input" name="domain" placeholder="http://crayon.co">
+              </div>
+              <button type="submit" class="btn btn-success">Find Favicon</button>
+            </form>
+            <div style="margin-top:20px;">
+              <% if domain %>
+                <h4> <%= domain %> </h4>
+                <% if fav_url %>
+                  <img src="<%= fav_url %>" />
+                <% else %>
+                  <div class="alert alert-danger" role="alert">
+                    <strong>Oh No!</strong> we couldn't find a favicon url for <strong><%= domain %></strong>
+                  </div>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-
-  <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-</body>
+    <script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  </body>
 </html>

@@ -29,6 +29,5 @@ module FaviconFinder
       end
     end
 
-
   end
 end
